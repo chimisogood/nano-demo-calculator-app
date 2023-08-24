@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 
 app = Flask(__name__)
 
@@ -9,7 +9,11 @@ def greeting():
 
 @app.route("/calculator/add", methods=['POST'])
 def add():
-    return ''
+    print("triggered")
+    data = request.get_json()
+    return {
+        "result": data["first"] + data["second"]
+    }
 
 @app.route("/calculator/subtract", methods=['POST'])
 def subtract():
